@@ -1,0 +1,17 @@
+name: Postman collection
+
+on: 
+  push:
+    branches: [ master ]
+    
+jobs:
+  API_test_collection:
+    runs-on: windows
+      steps:
+        - uses: actions/checkout@master
+        - uses: matt-ball/newman-action@master
+        with:
+        collection: Tests.postman_collection.json
+        environment: PetStore.postman_environment.json
+    
+    
