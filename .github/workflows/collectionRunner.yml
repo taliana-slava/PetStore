@@ -20,21 +20,11 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Run Newman
-        uses: ./      
         id: run-api-tests
         with:
-          collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
-          environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
+          collection: https://github.com/taliana-slava/PetStore/blob/master/Tests.postman_collection.json
+          environment: https://github.com/taliana-slava/PetStore/blob/master/PetStore.postman_environment.json
           reporters: cli
-
-      - name: Run Newman - Failure Continue
-        uses: ./      
-        id: run-api-tests-failure
-        with:
-          collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
-          environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
-          reporters: cli
-          suppressExitCode: "true"
 
       - name: Export Summary from Outputs
         run: |
