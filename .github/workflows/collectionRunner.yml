@@ -8,11 +8,21 @@ jobs:
   API_test_collection:
     runs-on: windows
     steps:
-    - uses: actions/checkout@v1
-    - name: PetStore_collection      
-      uses: matt-ball/newman-action@v1
+    
+    - name: Checkout
+      uses: actions/checkout@v1
+      
+    - name: Run API Tests
+      id: run-newman
+      uses: anthonyvscode/newman-action@v1
       with:
         collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
         environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
+        reporters: cli
+
+    - name: Output summary to console
+      run: echo ${{ steps.run-newman.outputs.summary }}
+      
+
     
     
