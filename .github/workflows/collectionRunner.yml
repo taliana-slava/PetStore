@@ -8,11 +8,11 @@ jobs:
   API_test_collection:
     runs-on: windows
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
     - name: PetStore_collection      
-      uses: matt-ball/newman-action@master
+      uses: matt-ball/newman-action@v1
       with:
-        collection: Tests.postman_collection.json
-        environment: PetStore.postman_environment.json
+        collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
+        environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
     
     
