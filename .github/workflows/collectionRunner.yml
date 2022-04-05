@@ -2,7 +2,7 @@ name: Postman collection
 
 on: 
   push:
-    branches: [ main ]
+    branches: [ master ]
     
 jobs:
     build:
