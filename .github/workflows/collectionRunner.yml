@@ -5,24 +5,41 @@ on:
     branches: [ main ]
     
 jobs:
-  API_test_collection:
-    runs-on: ubuntu-latest
-    steps:
-    
-    - name: Checkout
-      uses: actions/checkout@v1
-      
-    - name: Run API Tests
-      id: run-newman
-      uses: anthonyvscode/newman-action@v1
-      with:
-        collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
-        environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
-        reporters: cli
+    build:
+      runs-on: ubuntu-latest
+      steps:
 
-    - name: Output summary to console
-      run: echo ${{ steps.run-newman.outputs.summary }}
-      
+      - uses: actions/checkout@v1
+      - run: |
+          npm install
+          npm run all
+          
+    test: # make sure the action works on a clean machine without building
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v1
+
+      - name: Run Newman
+        uses: ./      
+        id: run-api-tests
+        with:
+          collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
+          environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
+          reporters: cli
+
+      - name: Run Newman - Failure Continue
+        uses: ./      
+        id: run-api-tests-failure
+        with:
+          collection: https://github.com/taliana-slava/PetStore/blob/main/Tests.postman_collection.json
+          environment: https://github.com/taliana-slava/PetStore/blob/main/PetStore.postman_environment.json
+          reporters: cli
+          suppressExitCode: "true"
+
+      - name: Export Summary from Outputs
+        run: |
+          echo ${{ steps.run-api-tests.outputs.summary }}
+
 
     
     
