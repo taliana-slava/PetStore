@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v1
           
     test: # make sure the action works on a clean machine without building
-      needs: build
+      #needs: build
       runs-on: ubuntu-latest
       steps:      
       - uses: actions/checkout@v1
