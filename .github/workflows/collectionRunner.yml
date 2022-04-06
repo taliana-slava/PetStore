@@ -13,8 +13,9 @@ jobs:
           
     test: # make sure the action works on a clean machine without building
       runs-on: ubuntu-latest
-      steps:      
-      - uses: anthonyvscode/newman-action@v1
+      steps: 
+      - uses: actions/checkout@v1
+      #- uses: anthonyvscode/newman-action@v1
 
       - name: Run Newman
         id: run-api-tests
