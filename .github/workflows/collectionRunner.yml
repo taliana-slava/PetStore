@@ -8,21 +8,20 @@ jobs:
     build:
       runs-on: ubuntu-latest
       steps:
-      - run: npm install -g newman
       - uses: actions/checkout@v1
+      - run: npm install -g newman      
           
     test: # make sure the action works on a clean machine without building
-      needs: build
       runs-on: ubuntu-latest
       steps:      
-      - uses: actions/checkout@v1
+      - uses: anthonyvscode/newman-action@v1
 
       - name: Run Newman
         id: run-api-tests
-        uses: anthonyvscode/newman-action@v1
+        uses: ./
         with:
-          collection: https://github.com/taliana-slava/PetStore/blob/master/Tests.postman_collection.json
-          environment: https://github.com/taliana-slava/PetStore/blob/master/PetStore.postman_environment.json
+          collection: ./Tests.postman_collection.json
+          environment: ./PetStore.postman_environment.json
           reporters: cli
 
       - name: Export Summary from Outputs
