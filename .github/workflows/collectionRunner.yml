@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Newman
         id: run-api-tests
-        uses: ./
+        uses: actions/checkout@v1
         with:
           collection: https://github.com/taliana-slava/PetStore/blob/master/Tests.postman_collection.json
           environment: https://github.com/taliana-slava/PetStore/blob/master/PetStore.postman_environment.json
