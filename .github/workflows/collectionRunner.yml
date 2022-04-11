@@ -32,14 +32,16 @@ jobs:
         run: |
           echo ${{ steps.run-api-tests.outputs.summary }}
           
-     # - name: Test Report
-       ### with:
-       #   name: JEST Tests            # Name of the check run which will be created
-       #   path: jest-junit.xml    # Path to test results
-      #    reporter: jest-junit 
-        #  run: |
-        #    npm ci 
-        #    npm test
+    report:
+      runs-on: ubuntu-latest
+      needs: test
+      steps:
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results            # artifact name
+          name: JEST Tests                  # Name of the check run which will be created
+          path: '*.xml'                     # Path to test results (inside artifact .zip)
+          reporter: jest-junit              # Format of test results 
 
 
     
