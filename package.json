@@ -22,7 +22,7 @@
     "node",
     "setup"
   ],
-  "author": "Anthony Zigenbine",
+  "author": "Taliana Chumachenko",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
