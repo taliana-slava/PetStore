@@ -34,16 +34,16 @@ jobs:
           
           
       - name: Send Email
-        uses: wadeww/send-email-action@master
-        with: 
+        uses: dawidd6/action-send-mail@v1.3.0
+        with:
           server_address: smtp.gmail.com
-          port: 465
+          server_port: 465
           username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: Workflow finished
-          body: Job completed ${{job.status}}
-          to: taliana.slava@gmail.com
-          from: Me 
+          password: ${{ secrets.MAIL_PASS }}
+          subject: Report of PetStore
+          body: ${{ github.actor }} just starred your mail-on-star repo!!! ${{ github.repository }}
+          to: ${{ secrets.GMAIL_ADDRESS }}
+          from: ${{ secrets.GMAIL_ADDRESS }}
       
       
     report:
