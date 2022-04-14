@@ -42,8 +42,8 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Report of PetStore
           body: ${{ github.actor }} just starred your mail-on-star repo!!! ${{ github.repository }}
-          to: taliana.slava@gmail.com
-          from: ${{ secrets.GMAIL_ADDRESS }}
+          to: ${{secrets.EMAIL_USERNAME }}
+          from: ${{secrets.EMAIL_USERNAME }}
       
       
     report:
