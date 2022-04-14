@@ -38,11 +38,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{ secrets.MAIL_PASS }}
+          username: ${{secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Report of PetStore
           body: ${{ github.actor }} just starred your mail-on-star repo!!! ${{ github.repository }}
-          to: ${{ secrets.GMAIL_ADDRESS }}
+          to: taliana.slava@gmail.com
           from: ${{ secrets.GMAIL_ADDRESS }}
       
       
