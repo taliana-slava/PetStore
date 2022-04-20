@@ -10,7 +10,9 @@ jobs:
       steps:
       - uses: actions/checkout@v1
       - run: |
-          npm install -g newman     
+          npm install -g newman 
+      - run: |
+          npm install -g newman-reporter-html
           
     test: # make sure the action works on a clean machine without building
       runs-on: ubuntu-latest
@@ -24,9 +26,8 @@ jobs:
         with:
           collection: ./Tests.postman_collection.json
           environment: ./PetStore.postman_environment.json
-          path: jest-junit.xml
-          reporters: cli
-          reporter: jest-junit
+          path: ./reporter.html
+          reporters: cli, html
 
       - name: Export Summary from Outputs
         run: |
