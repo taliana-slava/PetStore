@@ -33,6 +33,4 @@ jobs:
         run: |
           echo ${{ steps.run-api-tests.outputs.summary }}
                    
-          
-       
     
